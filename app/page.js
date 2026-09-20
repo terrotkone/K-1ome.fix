@@ -25,20 +25,15 @@ const QUESTIONS = [
 ]
 
 function HeaderLogo(){
- return (
-  <div style={{display:'flex', alignItems:'center', gap:6}}>
-    <div style={{fontWeight:900, fontSize:26, lineHeight:1, display:'flex', gap:1, fontStyle:'italic'}}>
-      <span style={{color:'#9c2b2b'}}>S</span><span style={{color:'#000'}}>S</span><span style={{color:'#888'}}>S</span>
-    </div>
-    <div>
-      <div style={{fontWeight:900, fontSize:22, display:'flex', alignItems:'center', gap:3, lineHeight:1}}>
-        <div style={{width:18, height:28, borderRadius:8, border:'2px solid #222', overflow:'hidden', display:'flex', flexDirection:'column'}}><div style={{flex:1, background:'#e53935', display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontSize:10}}>O</div><div style={{flex:1, background:'#43a047'}}/></div>
-        K-ONE<span style={{fontSize:7, writingMode:'vertical-rl', opacity:0.5}}>Interior<br/>Design</span>
+  return (
+    <div style={{display:'flex', alignItems:'center', gap:10}}>
+      <img src="/logo-circle.png" style={{width:52, height:52, borderRadius:'50%', objectFit:'cover', border:'2px solid #000'}} alt="K-ONE" />
+      <div>
+        <div style={{fontWeight:900, fontSize:22, lineHeight:1}}>K-ONE</div>
+        <div style={{fontSize:11, fontWeight:700}}>建一電工培訓中心</div>
       </div>
-      <div style={{fontSize:11, fontWeight:700, marginTop:1}}>建一電工培訓中心</div>
     </div>
-  </div>
- )
+  )
 }
 
 export default function Page(){
