@@ -27,7 +27,7 @@ const QUESTIONS = [
 function HeaderLogo(){
   return (
     <div style={{display:'flex', alignItems:'center', gap:10}}>
-      <img src="/IMG-20260920-WA1043.jpg" style={{width:52, height:52, borderRadius:'50%', objectFit:'cover', background:'#fff', border:'2px solid #000'}} 
+      <img src="/IMG-20260920-WA1043.jpg" style={{width:52, height:52, borderRadius:'50%', objectFit:'cover', background:'#fff', border:'2px solid #000'}} alt="K-ONE" />
       <div>
         <div style={{fontWeight:900, fontSize:22, lineHeight:1}}>K-ONE</div>
         <div style={{fontSize:11, fontWeight:700}}>建一電工培訓中心</div>
