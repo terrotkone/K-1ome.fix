@@ -1,6 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 
+const ALLOWED_PHONES = ['52828378'] // 已登記名單，之後加新號碼喺呢度
+
 const QUESTIONS = [
  {q:"根據香港電力條例，低壓裝置的絕緣電阻測試，最低應為多少兆歐 (MΩ)？", opts:["0.5 MΩ","1.0 MΩ","2.0 MΩ","5.0 MΩ"], a:1, tip:"依據《電力(接線)規例》第20條，低壓裝置的絕緣電阻值應不少於 1.0 MΩ"},
  {q:"香港單相標準電壓是？", opts:["110V","200V","220V","380V"], a:2, tip:"香港單相 220V，三相 380V"},
@@ -29,25 +31,37 @@ function HeaderLogo(){
     <div style={{display:'flex', alignItems:'center', gap:10}}>
       <img src="/logo.png" style={{width:52, height:52, borderRadius:'50%', objectFit:'cover'}} alt="K-ONE" />
       <div>
-        <div style={{fontWeight:900, fontSize:22, lineHeight:1}}>K-ONE</div>  <div style={{fontSize:11, fontWeight:700}}>建一電工培訓中心</div>
+        <div style={{fontWeight:900, fontSize:22, lineHeight:1}}>K-ONE</div>
+        <div style={{fontSize:11, fontWeight:700}}>建一電工培訓中心</div>
       </div>
     </div>
   )
 }
 
 export default function Page(){
+ const [phone,setPhone]=useState('')
  const [logged,setLogged]=useState(false)
+ const [error,setError]=useState('')
  const [i,setI]=useState(0)
  const [pick,setPick]=useState(null)
- <input 
-  placeholder="請輸入已登記電話號碼" 
-  value={phone} 
-  onChange={e=>setPhone(e.target.value)}
-  style={{...}}
-/>
- // useEffect(()=>{ if(typeof window!=='undefined' && localStorage.getItem('kone_phone')) setLogged(true)},[])
+
  const cur = QUESTIONS[i]
  const pct = Math.round((i+1)/QUESTIONS.length*100)
+
+ const handleLogin = () => {
+   const p = phone.trim()
+   if(!p){
+     setError('請輸入已登記電話號碼')
+     return
+   }
+   if(!ALLOWED_PHONES.includes(p)){
+     setError('此電話未登記，請聯絡 K-ONE 報名才可進入練習測試')
+     return
+   }
+   if(typeof window!=='undefined') localStorage.setItem('kone_phone',p)
+   setError('')
+   setLogged(true)
+ }
 
  if(!logged){
   return (
@@ -55,8 +69,15 @@ export default function Page(){
     <div style={{width:380, background:'white', borderRadius:20, padding:28, textAlign:'center', boxShadow:'0 10px 30px rgba(0,0,0,0.08)'}}>
      <div style={{display:'flex', justifyContent:'center'}}><HeaderLogo/></div>
      <div style={{fontWeight:900, marginTop:18, fontSize:22}}>建一電工寶</div>
-     <input value={phone} onChange={e=>setPhone(e.target.value)} style={{width:'100%', padding:14, borderRadius:12, border:'1px solid #ddd', marginTop:20}}/>
-     <button onClick={()=>{localStorage.setItem('kone_phone',phone); setLogged(true)}} style={{width:'100%', marginTop:20, padding:14, borderRadius:12, background:'#16a34a', color:'white', border:0, fontWeight:700}}>登入</button>
+     <div style={{fontSize:13, color:'#666', marginTop:6}}>電話登記才可進入練習測試</div>
+     <input
+       placeholder="請輸入已登記電話號碼"
+       value={phone}
+       onChange={e=>setPhone(e.target.value)}
+       style={{width:'100%', padding:14, borderRadius:12, border:'1px solid #ddd', marginTop:20}}
+     />
+     {error && <div style={{color:'red', fontSize:13, marginTop:10, textAlign:'left'}}>{error}</div>}
+     <button onClick={handleLogin} style={{width:'100%', marginTop:12, padding:14, borderRadius:12, background:'#16a34a', color:'white', border:0, fontWeight:700}}>登入</button>
     </div>
    </div>
   )
