@@ -40,7 +40,7 @@ export default function Page(){
  const [i,setI]=useState(0)
  const [pick,setPick]=useState(null)
  const [phone,setPhone]=useState('52828378')
- useEffect(()=>{ if(typeof window!=='undefined' && localStorage.getItem('kone_phone')) setLogged(true)},[])
+ // useEffect(()=>{ if(typeof window!=='undefined' && localStorage.getItem('kone_phone')) setLogged(true)},[])
  const cur = QUESTIONS[i]
  const pct = Math.round((i+1)/QUESTIONS.length*100)
 
