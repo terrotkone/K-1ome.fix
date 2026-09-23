@@ -39,7 +39,12 @@ export default function Page(){
  const [logged,setLogged]=useState(false)
  const [i,setI]=useState(0)
  const [pick,setPick]=useState(null)
- const [phone,setPhone]=useState('52828378')
+ <input 
+  placeholder="請輸入已登記電話號碼" 
+  value={phone} 
+  onChange={e=>setPhone(e.target.value)}
+  style={{...}}
+/>
  // useEffect(()=>{ if(typeof window!=='undefined' && localStorage.getItem('kone_phone')) setLogged(true)},[])
  const cur = QUESTIONS[i]
  const pct = Math.round((i+1)/QUESTIONS.length*100)
